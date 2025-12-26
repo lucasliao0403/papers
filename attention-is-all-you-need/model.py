@@ -39,7 +39,7 @@ def scaled_dot_product_attention(q, k, v, mask=None):
     # mask == 0 is because masked_fill only accepts boolean tensors, and this creates a boolean tensor in-place.
     # -1e9 is effectively negative infinity.
     if mask is not None:
-        scores = scores.masked_fill(mask == 0, -1e9) 
+        scores = scores.masked_fill(mask == 0, float('-inf')) 
     
     attn = F.softmax(scores, dim=-1)
     output = torch.matmul(attn, v)
