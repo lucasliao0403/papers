@@ -52,10 +52,11 @@ def test_feed_forward_shape():
     seq_len = 8
     d_model = 64
     d_ff = 256
+    p_dropout = 0.1
     
     x = torch.randn(batch_size, seq_len, d_model)
     
-    ffn = PositionwiseFeedForward(d_model=d_model, d_ff=d_ff)
+    ffn = PositionwiseFeedForward(d_model=d_model, d_ff=d_ff, p_dropout=p_dropout)
     output = ffn(x)
     
     assert output.shape == (batch_size, seq_len, d_model), f"Output shape mismatch: {output.shape}"

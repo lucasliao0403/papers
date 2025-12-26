@@ -10,7 +10,7 @@ class EncoderLayer(nn.Module):
         
         self.multihead_attn = MultiHeadAttention(d_model, num_heads)
         self.norm1 = nn.LayerNorm(d_model)
-        self.feed_forward = PositionwiseFeedForward(d_model, d_ff)
+        self.feed_forward = PositionwiseFeedForward(d_model, d_ff, p_dropout)
         self.norm2 = nn.LayerNorm(d_model)
         self.dropout = nn.Dropout(p_dropout)
 
