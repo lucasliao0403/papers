@@ -36,7 +36,7 @@ def scaled_dot_product_attention(q, k, v, mask=None):
     scores /= math.sqrt(d_k)
 
     # apply masking. 
-    # == 0 is because masked_fill only accepts boolean tensors, and this creates a boolean tensor in-place.
+    # mask == 0 is because masked_fill only accepts boolean tensors, and this creates a boolean tensor in-place.
     # -1e9 is effectively negative infinity.
     if mask is not None:
         scores = scores.masked_fill(mask == 0, -1e9) 
