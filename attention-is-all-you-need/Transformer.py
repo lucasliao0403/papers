@@ -41,9 +41,11 @@ class Transformer(nn.Module):
         seq_len = tgt.size(1)
         look_ahead_mask = torch.tril(torch.ones((seq_len, seq_len), device=tgt.device)).bool()
 
+
         # combine output mask with padding mask
+        look_ahead_mask = look_ahead_mask.unsqueeze(0).unsqueeze(0)  # Add batch & head dims
         if tgt_mask is None:
-            combined_mask = look_ahead_mask.unsqueeze(0).unsqueeze(0)  # Add batch & head dims
+            combined_mask = look_ahead_mask
         else:
             combined_mask = tgt_mask & look_ahead_mask
 
