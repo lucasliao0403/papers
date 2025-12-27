@@ -2,9 +2,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math
-from EncoderLayer import EncoderLayer
-from DecoderLayer import DecoderLayer
-from PositionalEncoding import PositionalEncoding
+from model.EncoderLayer import EncoderLayer
+from model.DecoderLayer import DecoderLayer
+from model.PositionalEncoding import PositionalEncoding
 
 class Transformer(nn.Module):
     def __init__(self, d_model, num_heads, d_ff, p_dropout, num_layers, vocab_size, max_len=5000):

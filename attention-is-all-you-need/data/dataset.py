@@ -1,5 +1,6 @@
+import torch
 from torch.utils.data import Dataset
-from train import tokenize
+from data.vocab import tokenize
 import random
 
 class TrainingDataset(Dataset):

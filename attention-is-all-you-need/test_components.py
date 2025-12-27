@@ -1,11 +1,11 @@
 import torch
 from model import scaled_dot_product_attention, create_padding_mask
-from MultiHeadAttention import MultiHeadAttention
-from PositionwiseFeedForward import PositionwiseFeedForward
-from EncoderLayer import EncoderLayer
-from DecoderLayer import DecoderLayer
-from PositionalEncoding import PositionalEncoding
-from Transformer import Transformer
+from model.MultiHeadAttention import MultiHeadAttention
+from model.PositionwiseFeedForward import PositionwiseFeedForward
+from model.EncoderLayer import EncoderLayer
+from model.DecoderLayer import DecoderLayer
+from model.PositionalEncoding import PositionalEncoding
+from model.Transformer import Transformer
 import math
 
 def test_scaled_dot_product_attention_shape():
