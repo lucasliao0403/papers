@@ -15,8 +15,8 @@ class Config:
     batch_size = 32
     num_epochs = 10
     learning_rate = 0.0001
-    
-    # optimizer 
+     
+    # optimizer settings
     adam_beta1 = 0.9
     adam_beta2 = 0.98
     adam_eps = 1e-9
