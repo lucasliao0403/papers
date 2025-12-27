@@ -11,19 +11,19 @@ class TrainingDataset(Dataset):
         self.max_len = max_len
         self.min_len = min_len
 
-        # Characters we can sample from (exclude special tokens)
+        # cars we can sample from (exclude special tokens)
         self.chars = [c for c in vocab.keys() if c not in ['<PAD>', '<SOS>', '<EOS>']]
 
     def __len__(self):
         return self.num_samples
 
     def __getitem__(self, idx):
-        # Generate random sequence
+        # generate random sequence
         length = random.randint(self.min_len, self.max_len)
         source_text = ''.join(random.choices(self.chars, k=length))
         target_text = source_text[::-1]  # reverse it
         
-        # Tokenize both
+        # tokenize both
         source_tokens = tokenize(source_text, self.vocab)
         target_tokens = tokenize(target_text, self.vocab)
         
