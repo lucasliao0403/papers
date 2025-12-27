@@ -52,3 +52,35 @@ def detokenize(token_ids, idx_to_char):
             chars.append(char)
     
     return ''.join(chars)
+
+def collate_fn(batch):
+    """
+    takes a list of samples and combines them into a batch.
+    pads sequences to the same length.
+    """
+    # extract sources and targets
+    sources = [item['source'] for item in batch]
+    targets = [item['target'] for item in batch]
+    
+    # pad to longest in this batch
+    source_padded = torch.nn.utils.rnn.pad_sequence(
+        sources, 
+        batch_first=True,
+        padding_value=0  # <PAD> token index
+    )
+    target_padded = torch.nn.utils.rnn.pad_sequence(
+        targets,
+        batch_first=True, 
+        padding_value=0
+    )
+    
+    # create padding masks (true where real data)
+    source_mask = (source_padded != 0) # shape: (batch_size, max_src_len)
+    target_mask = (target_padded != 0) # shape: (batch_size, max_tgt_len)
+    
+    return {
+        'source': source_padded, # (batch_size, max_src_len)
+        'target': target_padded, # (batch_size, max_tgt_len)
+        'source_mask': source_mask, # (batch_size, max_src_len)
+        'target_mask': target_mask # (batch_size, max_tgt_len)
+    }
