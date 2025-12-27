@@ -1,5 +1,3 @@
-# This module implements the core components of the Transformer model.
-
 # torch is core pytorch library. contains tensor computation, autograd, and neural networks.
 import torch 
 
@@ -44,15 +42,3 @@ def scaled_dot_product_attention(q, k, v, mask=None):
     attn = F.softmax(scores, dim=-1)
     output = torch.matmul(attn, v)
     return output, attn
-
-
-def create_padding_mask(src_tokens, pad_token_id=0):
-    '''
-    identify pads
-    assume 0 is the pad token id
-    Result shape: (batch_size, 1, 1, seq_len)
-    '''
-
-    #.unsqueeze inserts a dimension of size 1 at the specified position
-    mask = (src_tokens != pad_token_id).unsqueeze(1).unsqueeze(2)
-    return mask
